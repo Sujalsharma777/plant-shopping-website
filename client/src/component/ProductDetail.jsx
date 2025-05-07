@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext.jsx";
 import FormatePrice from "../Helper/FormatePrice.jsx";
-const API = "https://product-7d4b.onrender.com/Products";
+import Pagenavigation from "../component/Pagenavigation.jsx"
+import CartAmount from "../component/CartAmount.jsx";
+import { TbTruckDelivery } from "react-icons/tb";
+import { LuPackageCheck } from "react-icons/lu";
+import { MdOutlinePayments } from "react-icons/md";
 
 const ProductDetail = () => {
-    const { getSingleProduct, isSingleLoading, SingleProducts } =
-        useProductContext();
-    console.log(SingleProducts);
+    const { getSingleProduct, isSingleLoading, SingleProducts } = useProductContext();
+
     const { id } = useParams();
 
     useEffect(() => {
@@ -20,76 +23,69 @@ const ProductDetail = () => {
         description,
         plantType,
         image,
-        Care,
+
         stock,
     } = SingleProducts;
 
-    /* const incrementButton = document.getElementById("increment");
-        const decrementButton = document.getElementById("decrement");
-        const quantityInput = document.getElementById("qty");
-    
-        incrementButton.addEventListener("click", () => {
-            const currentVal = parseInt(quantityInput.value) || 0;
-            quantityInput.value = currentVal + 1;
-        });
-    
-        decrementButton.addEventListener("click", () => {
-            const currentVal = parseInt(quantityInput.value) || 1;
-            if (currentVal > 1) { // Ensure quantity doesn't go below 1
-                quantityInput.value = currentVal - 1;
-            }
-        }); */
+    /* if (isSingleLoading) {
+        return <div>....loading </div>
+    }; */
+    const [amount, setAmount] = useState(1);
+    const SetDicreaces = () => {
+        amount > 1 ? setAmount(amount - 1) : setAmount(1);
+    };
+    const SetIncreaces = () => {
+        amount < stock ? setAmount(amount + 1) : setAmount(stock);
+    };
+
     return (
         <>
-            <div className="grid justify-center item-center grid-cols-2  m-5">
-                <div id="image-side " className="flex justify-center items-center">
-                    <div>
-                        <img
-                            src={image}
-                            alt={name}
-                            className="rounded-2xl shadow-black shadow-lg w-80 h-80"
-                        />
+            <div className="">
+                <Pagenavigation title={name} />
+                <div className="min-w-1/2 grid justify-center item-center sm:grid-cols-2 grid-rows-2  m-5">
+                    <div id="image-side " className="flex justify-center items-center">
+                        <div>
+                            <img
+                                src={image}
+                                alt={name}
+                                className="rounded-2xl shadow-black shadow-lg w-80 h-80"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div id="description-side" className="grid grid-row-7 gap-5">
-                    <div>
-                        Best Quality plant <span className="font-bold">{name}</span>
-                    </div>
-                    <div>MRP <span className="font-bold">{<FormatePrice Price={price} />}</span> </div>
-                    <div className="text-sm font-light ">{description}</div>
-                    <div>
-                        <label htmlFor="">QTY</label>
-                        <button id="increment" className="ring-1 p-1 m-2 ring-gray-400">
-                            +
-                        </button>
-                        <input
-                            type="number"
-                            id="qty"
-                            value="1"
-                            min="1"
-                            className="w-10 h-auto"
-                            i
-                        />
+                    <div id="description-side" className="grid grid-row-7 gap-5">
+                        <div>
+                            <span className="font-bold text-3xl">{name}</span>
+                        </div>
+                        <div>MRP <span className="font-bold text-red-600">{<FormatePrice Price={price} />}</span> </div>
+                        <div className="text-sm font-light ">{description}</div>
 
-                        <button id="decrement" className="ring-1 p-1 m-2 ring-gray-400">
-                            -
-                        </button>
-                    </div>
-                    <div>
-                        Category: <span className="font-bold">{plantType}</span>
-                    </div>
-                    <div>
-                        Avalaibity {stock}
-                    </div>
-                    <div>
+                        <div className="flex gap-5  justify-center ">
+                            <div className="flex justify-center items-center flex-col"><TbTruckDelivery className="text-3xl" /><span className="text-sm ">Fast Delivery</span></div>
+                            <div className="flex justify-center items-center flex-col" ><LuPackageCheck className="text-3xl " /><span className="text-sm">7 Day Return</span></div>
+                            <div className="flex justify-center items-center flex-col"><MdOutlinePayments className="text-3xl " /><span className="text-sm ">Secure Payment</span></div>
+                        </div>
+                        <hr />
+                        <CartAmount Amount={amount}
+                            SetDicreace={SetDicreaces}
+                            SetIncreace={SetIncreaces} />
 
-                        <NavLink to="/Cart" className="p-2 my-3   bg-green-700 text-white rounded-sm">Add To Cart </NavLink>
+                        <div>
+                            Category: <span className="font-medium">{plantType}</span>
+                        </div>
+                        <div>
+                            Available Stock: <span className="font-medium">{stock}</span>
+                        </div>
+                        <div>
+
+                            <NavLink to="/Cart" className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center">Add To Cart </NavLink>
 
 
 
+                        </div>
                     </div>
                 </div>
             </div>
+
         </>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router";
-import { FaHome, FaUser } from "react-icons/fa";
-import { TbTruckDelivery } from "react-icons/tb";
+import { FaUser } from "react-icons/fa";
+
 
 import { FaCartShopping } from "react-icons/fa6";
 

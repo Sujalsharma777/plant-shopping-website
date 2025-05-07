@@ -2,20 +2,22 @@ import React from "react";
 import { NavLink } from "react-router";
 import FormatePrice from "../Helper/FormatePrice";
 import { useProductContext } from "../context/ProductContext"
-
+import { useFilterContext } from "../context/FilterContext"
+/* import FilterSearching from "../component/FilterSearching" */
 const ProductList = () => {
-    const { isLoading, latestArrived } = useProductContext();
+    const { isLoading } = useProductContext();
     if (isLoading) {
-        <div>.....Loding</div>
+        <div>.....Loading</div>
     }
 
+    const { filter_products } = useFilterContext()
 
     return (
         <section>
 
             <div className="my-5 m-10 grid grid-cols-1  sm:grid-cols-4 gap-8 *:flex *:flex-col *:items-center">
-
-                {latestArrived.map((data) => {
+                {/*    <FilterSearching /> */}
+                {filter_products.map((data) => {
                     return (
 
                         <div className="text-center relative shadow-gray-400 shadow-md rounded-2xl p-5 " key={data.id} >

@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router";
-
 import { useProductContext } from "../context/ProductContext"
 import FormatePrice from "../Helper/FormatePrice";
+
 const ProductList = () => {
     const { isLoading, latestArrived } = useProductContext();
     if (isLoading) (
-        <div>....loading</div>
+        <div className="w-full h-full">..loading
+        </div>
     )
 
 

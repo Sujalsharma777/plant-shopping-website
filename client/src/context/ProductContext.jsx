@@ -20,14 +20,12 @@ const AppProvider = ({ children }) => {
         try {
             const res = await axios.get(URL);
             const products = await res.data
-
-
             dispatch({ type: "Set_Api_Data", payload: products })
         } catch (error) {
             dispatch({ type: "Api_Error" });
         }
     };
-    // Singel api call
+    // Single api call
     const getSingleProduct = async (urk) => {
         dispatch({ type: "Set_Single_Loading" });
         try {
