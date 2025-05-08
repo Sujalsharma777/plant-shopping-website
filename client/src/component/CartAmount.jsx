@@ -7,7 +7,7 @@ const CartAmount = ({ Amount, SetDicreace, SetIncreace }) => {
         <div className=''>
             <div className=' flex item-center flex-row *:m-2'>
                 <button onClick={() => SetDicreace()}><FaMinus /></button>
-                <div className='ring-1 w-10 h-10 flex justify-center items-center'>{Amount}</div>
+                <div className=' flex justify-center items-center'>{Amount}</div>
                 <button onClick={() => SetIncreace()}><FaPlus /></button>
             </div>
         </div>

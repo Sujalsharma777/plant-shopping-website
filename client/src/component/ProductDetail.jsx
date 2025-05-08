@@ -7,8 +7,10 @@ import CartAmount from "../component/CartAmount.jsx";
 import { TbTruckDelivery } from "react-icons/tb";
 import { LuPackageCheck } from "react-icons/lu";
 import { MdOutlinePayments } from "react-icons/md";
+import { UseCartContext } from "../context/CartContext.jsx"
 
 const ProductDetail = () => {
+    const { addtocart } = UseCartContext();
     const { getSingleProduct, isSingleLoading, SingleProducts } = useProductContext();
 
     const { id } = useParams();
@@ -77,7 +79,7 @@ const ProductDetail = () => {
                         </div>
                         <div>
 
-                            <NavLink to="/Cart" className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center">Add To Cart </NavLink>
+                            <NavLink to="/Cart" onClick={() => addtocart(id, amount, SingleProducts)} className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center">Add To Cart </NavLink>
 
 
 
