@@ -31,7 +31,7 @@ export const FilterContextProvider = ({ children }) => {
     };
 
     return (
-        <FilterContext.Provider value={{ ...states, updateFilterValue }}>
+        <FilterContext.Provider value={{ ...states, updateFilterValue, }}>
             {children}
         </FilterContext.Provider>
     );
