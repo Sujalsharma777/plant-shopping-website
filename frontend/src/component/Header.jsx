@@ -46,6 +46,9 @@ function Header() {
                             <span className="w-full absolute text-[10px] rounded-4xl text-center ring-2 p-1 bg-rose-500  z-10 -top-2 -right-3 font-bold">{total_item}</span>
                         </NavLink>
                     </div>
+                <div>
+                   
+                </div>
                 </div>
             </header>
         </>
