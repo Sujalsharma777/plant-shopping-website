@@ -9,7 +9,8 @@ const searching = () => {
                 <input type="text"
                     name="text"
                     value={text}
-                    onChange={updateFilterValue} />
+                    onChange={updateFilterValue}
+                    placeholder = "SEARCH" />
             </form>
         </div>
     );
