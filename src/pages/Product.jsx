@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import FormatePrice from "../Helper/FormatePrice";
 import { useProductContext } from "../context/ProductContext"
 import { useFilterContext } from "../context/FilterContext"
-
+import FilterSearching from "../component/FilterSearching.jsx"
 
 import { UseCartContext } from "../context/CartContext.jsx"
 const ProductList = () => {
@@ -19,9 +19,9 @@ const ProductList = () => {
 
     return (
         <section className="m-5">
-
+            <FilterSearching  />
             <div className="my-5  grid grid-cols-1  sm:grid-cols-4 gap-8 *:flex *:flex-col *:items-center">
-                {/*    <FilterSearching /> */}
+
                 {filter_products.map((data) => {
                     return (
 
