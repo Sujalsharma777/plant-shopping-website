@@ -18,17 +18,20 @@ const FilterReducer = (states, action) => {
             };
 
         case "FILTER_PRODUCTS":
-            const { all_products, filter } = states;
-            const { text } = filter;
-
+            const { all_products,  } = states;
             let tempFilterProduct = [...all_products];
+            const { text, plantType } = states.filter;
 
             if (text) {
                 tempFilterProduct = tempFilterProduct.filter((item) =>
                     item.name.toLowerCase().includes(text.toLowerCase())
                 );
             }
-
+            if(plantType){
+                tempFilterProduct = tempFilterProduct.filter((item)=>{
+return item.plantType === plantType;
+            });
+        }
             return {
                 ...states,
                 filter_products: tempFilterProduct,
@@ -38,5 +41,3 @@ const FilterReducer = (states, action) => {
             return states;
     }
 };
-
-export default FilterReducer;
