@@ -17,7 +17,7 @@ const ProductList = () => {
     }
 
     return (
-        <section className="my-7">
+        <section className="m-7">
             <div>
                 <FilterSearching />
                 <Filtercategory /></div>
