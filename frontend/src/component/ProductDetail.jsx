@@ -8,7 +8,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { LuPackageCheck } from "react-icons/lu";
 import { MdOutlinePayments } from "react-icons/md";
 import { UseCartContext } from "../context/CartContext.jsx"
-
+import { toast } from "react-toastify"
 const ProductDetail = () => {
     const { addtocart } = UseCartContext();
     const { getSingleProduct, isSingleLoading, SingleProducts } = useProductContext();
@@ -79,14 +79,14 @@ const ProductDetail = () => {
                         </div>
                         <div>
 
-                            <NavLink to="/Cart" onClick={() => addtocart(id, amount, SingleProducts)} className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center"><button>Add To Cart </button></NavLink>
+                            <NavLink to="/Cart" onClick={() => addtocart(id, amount, SingleProducts)} className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center"><button onClick={() => toast.success("Item Added..")}>Add To Cart </button></NavLink>
 
 
 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
 
         </>
     );

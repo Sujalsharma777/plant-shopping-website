@@ -12,7 +12,7 @@ const user = () => {
                     <  FaUser className="text-8xl flex w-full justify-center " ></FaUser>
 
                     <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                        Sign in to your account
+                        Login in to your account
                     </h2>
                 </div>
 

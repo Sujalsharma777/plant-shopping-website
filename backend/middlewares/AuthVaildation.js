@@ -1,35 +1,16 @@
-const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 
-const signupValidation = (req, res, next) => {
-  const schema = Joi.object({
-    name: Joi.string().min(3).max(100).required(),
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required(),
-    password: Joi.string().min(4).max(100).required(),
-  });
-  const { error } = schema.validate(req.body);
-  if (error) {
-    return res.status(400).json({ message: "Bad request", error });
+const authMiddleware = (req, res, next) => {
+  const token = req.header("Authorization");
+  if (!token) return res.status(401).json({ message: "Access Denied" });
+
+  try {
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = verified;
+    next();
+  } catch (error) {
+    res.status(400).json({ message: "Invalid Token" });
   }
-  next();
 };
 
-const loginValidation = (req, res, next) => {
-  const schema = Joi.object({
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required(),
-    password: Joi.string().min(4).max(100).required(),
-  });
-  const { error } = schema.validate(req.body);
-  if (error) {
-    return res.status(400).json({ message: "Bad request", error });
-  }
-  next();
-};
-
-module.exports = {
-  signupValidation,
-  loginValidation,
-};
+module.exports = authMiddleware;

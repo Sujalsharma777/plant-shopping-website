@@ -15,12 +15,14 @@ import { Route, Routes } from "react-router-dom";
 import Product from "./pages/Product.jsx";
 import ProductDetail from "./component/ProductDetail.jsx";
 import ScrollToTop from "./component/ScrollToTop.jsx";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <Router>
       <Hearder />
       <ScrollToTop />
+      <ToastContainer />
       <Routes>
 
         <Route path="/" element={<Home />} />
@@ -28,8 +30,9 @@ function App() {
         <Route path="/ProductView/:id" element={<ProductDetail />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Order" element={<Order />} />
-        <Route path="/login" element={<Login />} />
+
         <Route path="/NewUser" element={<NewUser />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="*" element={<Page404 />} />
