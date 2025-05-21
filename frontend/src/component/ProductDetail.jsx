@@ -39,6 +39,27 @@ const ProductDetail = () => {
     const SetIncreaces = () => {
         amount < stock ? setAmount(amount + 1) : setAmount(stock);
     };
+    /* const addToCart = async (SingleProducts) => {
+        const token = localStorage.getItem('token');
+
+        try {
+            await axios.post('http://localhost:5000/cart', {
+                plantType: SingleProducts.plantType,
+                price: SingleProducts.price,
+                qty: stock,
+                imageUrl: SingleProducts.image,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            alert('Product added to cart');
+        } catch (error) {
+            alert('Login required');
+        }
+    }; */
+
 
     return (
         <>
@@ -48,6 +69,7 @@ const ProductDetail = () => {
                     <div id="image-side " className="flex justify-center items-center w-full h-full">
                         <div>
                             <img
+                                width={1000}
                                 src={image}
                                 alt={name}
                                 className="rounded-2xl shadow-black shadow-lg object-cover aspect-square"
@@ -77,9 +99,9 @@ const ProductDetail = () => {
                         <div>
                             Available Stock: <span className="font-medium">{stock}</span>
                         </div>
-                        <div>
+                        <div /* onClick={() => addToCart(product)} */>
 
-                            <NavLink to="/Cart" onClick={() => addtocart(id, amount, SingleProducts)} className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center"><button onClick={() => toast.success("Item Added..")}>Add To Cart </button></NavLink>
+                            <NavLink to="/Cart" onClick={() => addtocart(id, amount, SingleProducts,)} className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center"><button >Add To Cart </button></NavLink>
 
 
 

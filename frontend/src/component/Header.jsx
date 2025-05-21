@@ -8,8 +8,8 @@ function Header() {
     const { total_item } = UseCartContext();
     return (
         <>
-            <header className="bg-white shadow">
-                <div className="container py-5 sm:flex sm:justify-between sm:items-center px-5 ">
+            <header className="bg-white shadow ">
+                <div className="sm:h-20 container py-5 sm:flex sm:justify-between    sm:items-center px-5 ">
                     <div
                         className="text-2xl font-bold  text-green-700  ">
                         Plant House Store
@@ -17,7 +17,7 @@ function Header() {
 
 
 
-                    <div className="grid grid-cols-4 justify-center gap-5 ">
+                    <div className="sm:flex grid place-items-center grid-rows-4 gap-10 ">
                         <NavLink className=" text-gray-600 hover:text-green-700" to="/">
                             Home
                         </NavLink>
@@ -37,8 +37,8 @@ function Header() {
                             About
                         </NavLink>
                     </div>
-                    <div className="grid grid-cols-2  justify-center gap-5 ">
-                        <NavLink className="text-gray-600 hover:text-green-700 text-2xl" to="/NewUser">
+                    <div className="grid sm:grid-cols-2  justify-center sm:gap-5 my-10 gap-5   ">
+                        <NavLink className="text-gray-600 hover:text-green-700 text-2xl" to="/login">
                             <FaUser />
                         </NavLink>
                         <NavLink

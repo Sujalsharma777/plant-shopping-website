@@ -1,6 +1,7 @@
 import React from "react";
 import { UseCartContext } from "../context/CartContext";
 import Cartitem from "../component/Cartitem";
+import CheckOut from '../pages/CheckOut'
 import { NavLink } from "react-router";
 import FormatePrice from "../Helper/FormatePrice";
 const Cart = () => {
@@ -13,6 +14,7 @@ const Cart = () => {
             </div>
         );
     }
+
     return (
         <>
             <div className="w-full min-h-80 max-h-full">
@@ -29,13 +31,16 @@ const Cart = () => {
                 <hr />
                 <div className=" grid gap-2 sm:m-2 m-1">
                     {Cart.map((curElem) => {
-                        return <Cartitem key={curElem.id} {...curElem} />;
+                        return <Cartitem key={curElem.id} {...curElem} />
+
+
+
                     })}
                 </div>
                 <hr />
                 <div className="flex justify-between m-5 ">
                     <div className="p-2 my-3 bg-green-700 text-white rounded-sm flex justify-center hover:bg-green-800">
-                        <NavLink>
+                        <NavLink to="/CheckOut">
                             <button>Continue Shopping</button>
                         </NavLink>
                     </div>
@@ -43,7 +48,7 @@ const Cart = () => {
                         <button onClick={RemoveCart}>Clear Cart</button>
                     </div>
                 </div>
-                <div className="grid grid-rows-4 place-content-end gap-2 text-left m-10">
+                <div className="grid grid-rows-4 place-content-end gap-2 text-left m-10 " >
                     <div className="grid grid-cols-2 gap-5">
                         <span>Subtotal :</span> <span className="font-medium"><FormatePrice Price={total_price} /></span>
                     </div>
