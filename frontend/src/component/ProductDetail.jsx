@@ -9,6 +9,7 @@ import { LuPackageCheck } from "react-icons/lu";
 import { MdOutlinePayments } from "react-icons/md";
 import { UseCartContext } from "../context/CartContext.jsx"
 import { toast } from "react-toastify"
+import LatestProduct from "../component/ProductLatestArrive"
 const ProductDetail = () => {
     const { addtocart } = UseCartContext();
     const { getSingleProduct, isSingleLoading, SingleProducts } = useProductContext();
@@ -63,16 +64,16 @@ const ProductDetail = () => {
 
     return (
         <>
-            <div className="">
+            <div className="h">
                 <Pagenavigation title={name} />
-                <div className="min-w-1/2 grid justify-center item-center sm:grid-cols-2 grid-rows-2  m-5">
-                    <div id="image-side " className="flex justify-center items-center w-full h-full">
+                <div className="flex sm:flex-row flex-col  md:flex-row  m-5">
+                    <div id="image-side " className="flex justify-center items-center w-full my-5    ">
                         <div>
                             <img
-                                width={1000}
+
                                 src={image}
                                 alt={name}
-                                className="rounded-2xl shadow-black shadow-lg object-cover aspect-square"
+                                className="rounded-2xl shadow-black shadow-lg object-cover aspect-square w-[300px] sm:w-64"
                             />
                         </div>
                     </div>
@@ -107,6 +108,9 @@ const ProductDetail = () => {
 
                         </div>
                     </div>
+                </div>
+                <div>
+                    <LatestProduct />
                 </div>
             </div >
 

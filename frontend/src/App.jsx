@@ -17,7 +17,7 @@ import ProductDetail from "./component/ProductDetail.jsx";
 import ScrollToTop from "./component/ScrollToTop.jsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import AdminDesk from "./pages/Admin.jsx"
 function App() {
   return (
     <Router>
@@ -36,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/admin" element={<AdminDesk />} />
         <Route path="*" element={<Page404 />} />
 
 

@@ -3,9 +3,11 @@ import axios from 'axios';
 import { UseCartContext } from "../context/CartContext";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify"
+import Formateprice from "../Helper/FormatePrice"
 const CheckoutPage = () => {
     const { Cart, total_price, shipping_fee, RemoveCart } = UseCartContext();
-    const { id, name, image, price } = Cart
+    const [orderData, setOrderData] = useState(null);
+
     const navigate = useNavigate();
 
     const [contactInfo, setContactInfo] = useState({
@@ -26,7 +28,7 @@ const CheckoutPage = () => {
     const handlePlaceOrder = async () => {
         const token = localStorage.getItem('token');
 
-        const orderData = {
+        const newOrderData = {
             contactInfo,
             addressInfo,
             paymentMethod,
@@ -39,11 +41,12 @@ const CheckoutPage = () => {
                 product: item._id, // assuming each cart item has `_id` of product
             })),
         };
+        setOrderData(newOrderData);
 
-        const elements = document.getElementsByTagName("input")
+
 
         try {
-            await axios.post('http://localhost:5000/api/auth/userorder', orderData, {
+            await axios.post('http://localhost:5000/api/auth/userorder', newOrderData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -92,24 +95,40 @@ const CheckoutPage = () => {
                 </div>
             </div>
 
-            <div className='sm:visible invisible'>
-                <div>
-                    <div>Your orders</div>
-                    <hr />
-                    <div>
-                        <div className='text-2xl ' key={id} >
-                            <div className='image'>{image}</div>
-                            <div className='name-qty'>{name}</div>
-                        </div>
-                    </div>
+            <div className=' sm:col-span-1'>
+                <div className="bg-white p-5 border rounded shadow-md">
+                    <h2 className='text-xl font-semibold mb-3'>Your Orders</h2>
+                    <hr className='mb-4' />
+
+                    {Cart.length === 0 ? (
+                        <p className="text-gray-500">Your cart is empty.</p>
+                    ) : (
+                        Cart.map((item, index) => (
+                            <div key={index} className="flex items-center gap-4 mb-4">
+                                <img src={item.image} alt={item.name} className="w-20 h-20 object-cover border rounded" />
+                                <div>
+                                    <p className="font-medium">{item.name}</p>
+                                    <p className="text-sm text-gray-600">Qty: {item.amount}</p>
+                                    <p className="text-sm text-gray-600">Price: {<Formateprice Price={item.price} />}</p>
+                                </div>
+                            </div>
+                        ))
+                    )}
+
+                    <hr className='my-4 ' />
+                    <div className='text-right'>
+                        <p className="text-lg font-semibold">Subtotal: {<Formateprice Price={total_price} />}</p>
+                        <p className="text-md text-gray-600">Shipping: {<Formateprice Price={shipping_fee} />}</p>
+                        <p className="text-xl font-bold mt-2">Total:{<Formateprice Price={total_price + shipping_fee} />}</p></div>
                 </div>
             </div>
-        </div>
-        /*  <div className="checkout-container grid    w-full h-screen py-10">
-            
-           
-         </div> */
+
+        </div >
+
     );
 };
+
+
+
 
 export default CheckoutPage;

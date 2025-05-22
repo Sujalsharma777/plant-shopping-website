@@ -31,7 +31,7 @@ const ProductList = () => {
 
     return (
         <section className="m-5">
-            <div className="flex sm:justify-between flex-col justify-center ">
+            <div className="flex sm:justify-between sm:flex-row flex-col justify-center ">
                 <FilterSearching />
                 <FilterCategory />
             </div>
@@ -51,6 +51,7 @@ const ProductList = () => {
 
                     </div>
                 ))}
+
             </div>
         </section>
     )
