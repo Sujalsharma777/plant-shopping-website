@@ -28,7 +28,7 @@ const FilterReducer = (states, action) => {
                 );
             }
 
-            if (plantType !== "All") {
+            if (plantType && plantType !== "All") {
                 tempFilterProduct = tempFilterProduct.filter(
                     (item) => item.plantType === plantType
                 );

@@ -120,15 +120,16 @@ const CartReducer = (state, action) => {
     /* total item price and shipping logic */
     if (action.type === "TOTAL_PRICE_ITEM") {
         let total_price = state.Cart.reduce((initialVal, CurElm) => {
-            let { price, amount } = CurElm
-            initialVal = initialVal + price * amount;
-            return initialVal
-        }, 0)
+            let { price, amount } = CurElm;
+            initialVal += price * amount;
+            return initialVal;
+        }, 0);
         return {
             ...state,
             total_price,
-        }
+        };
     }
+
     return state;
 }
 export default CartReducer

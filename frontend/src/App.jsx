@@ -18,6 +18,11 @@ import ScrollToTop from "./component/ScrollToTop.jsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import AdminDesk from "./pages/Admin.jsx"
+import AdminLogin from "./pages/AdminLogin.jsx"
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import PendingOrders from "./pages/PendingOrder.jsx";
+import ConfirmdAdmin from "./pages/ConfirmdAdmin.jsx";
+import DelverdAdmin from "./pages/DelverdAdmin.jsx";
 function App() {
   return (
     <Router>
@@ -37,6 +42,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/admin" element={<AdminDesk />} />
+        <Route path="/admin-Login" element={<AdminLogin />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/PendingOrder" element={<PendingOrders />} />
+        <Route path="/ConfirmedOrder" element={<ConfirmdAdmin />} />
+        <Route path="/DelhverdOrder" element={<DelverdAdmin />} />
+
+
         <Route path="*" element={<Page404 />} />
 
 

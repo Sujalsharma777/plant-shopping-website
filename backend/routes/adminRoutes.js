@@ -1,16 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getDashboardStats,
   getAllOrders,
+  loginAdminUser,
+  getDashboardStats,
+  getPendingOrders,
   updateOrderStatus,
-} = require("../controllers/adminController");
-const auth = require("../middlewares/AuthVaildation");
-const admin = require("../middlewares/isAdmin");
+  getConfirmedOrders,
+  getDeliverOrders,
+} = require("../controllers/Admin");
+const { isAdmin } = require("../middlewares/Verifiytoken");
 
-router.use(auth, admin);
-router.get("/dashboard", getDashboardStats);
-router.get("/orders", getAllOrders);
-router.put("/order/:id/status", updateOrderStatus);
+router.post("/loginadmin", loginAdminUser);
+router.get("/orders", isAdmin, getAllOrders);
+router.get("/Dashboard", isAdmin, getDashboardStats);
+router.get("/pending", isAdmin, getPendingOrders);
+router.get("/confirm", isAdmin, getConfirmedOrders);
+router.get("/Deliver", isAdmin, getDeliverOrders);
+router.put("/:id/update", isAdmin, updateOrderStatus);
 
 module.exports = router;

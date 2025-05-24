@@ -1,27 +1,28 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./models/db");
 const authRoutes = require("./routes/Authrouter");
 const orderRoutes = require("./routes/orderRoutes");
-const adminRoutes = require("./routes/adminRoutes");
 const path = require("path");
+const adminRoutes = require("./routes/AdminRoutes.js");
 dotenv.config();
 connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-mongoose
-  .connect("mongodb://localhost:5173/mern-admin-panel", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected"));
-
-app.use("/api/admin", adminRouter);
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", orderRoutes);
+app.use("/admin", adminRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

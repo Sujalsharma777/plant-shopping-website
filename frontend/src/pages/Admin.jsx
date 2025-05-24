@@ -1,63 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import api from '../service/api';
+import { useEffect, useState } from "react";
+import axios from 'axios'
 
-const AdminPanel = () => {
-    const [stats, setStats] = useState({});
+function AdminOrders() {
     const [orders, setOrders] = useState([]);
-    const token = localStorage.getItem("token")
+    const [error, setError] = useState("");
+    console.log(orders)
     useEffect(() => {
-        const fetchStats = async () => {
-            const res = await api.get('http://localhost:5000/api/admin/dashboard');
-            setStats(res.data);
-
-        };
         const fetchOrders = async () => {
-            const res = await api.get('http://localhost:5000/api/admin/orders');
-            setOrders(res.data);
+            try {
+                const res = await axios.get("http://localhost:5000/admin/orders", { withCredentials: true });
+                setOrders(res.data);
+            } catch (err) {
+                console.error(err);
+                setError("Failed to load orders. Make sure you're logged in as admin.");
+            }
         };
-        fetchStats();
+
         fetchOrders();
     }, []);
 
-    const updateStatus = async (id, newStatus) => {
-        await api.put(`http://localhost:5000/api/admin/order/${id}/status`, { status: newStatus });
-        setOrders(orders.map(o => o._id === id ? { ...o, status: newStatus } : o));
-    };
+
+
+
 
     return (
-        <div>
-            <h2>Dashboard</h2>
-            <p>Total Sales: ${stats.totalSales}</p>
-            <p>Pending Orders: {stats.pendingOrders}</p>
-            <p>Delivered Orders: {stats.deliveredOrders}</p>
+        <>
+            <div>
+                <h2>Admin Orders</h2>
 
-            <h3>All Orders</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>User</th><th>Total</th><th>Status</th><th>Change</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders.map(order => (
-                        <tr key={order._id}>
-                            <td>{order.user?.name}</td>
-                            <td>${order.totalPrice}</td>
-                            <td>{order.status}</td>
-                            <td>
-                                {order.status !== 'Confirmed' && (
-                                    <button onClick={() => updateStatus(order._id, 'Confirmed')}>Confirm</button>
-                                )}
-                                {order.status !== 'Delivered' && (
-                                    <button onClick={() => updateStatus(order._id, 'Delivered')}>Deliver</button>
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
+                {error && <p style={{ color: 'red' }}>{error}</p>}
 
-export default AdminPanel;
+                {orders.length === 0 ? (
+                    <p>No orders found.</p>
+                ) : (
+                    orders.map((order, index) => (
+                        <div key={index} style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
+                            <h3>Order #{index + 1}</h3>
+                            <p><strong>Name:</strong> {order.contactInfo.name}</p>
+                            <p><strong>Email:</strong> {order.contactInfo.email}</p>
+                            <p><strong>Phone:</strong> {order.contactInfo.phone}</p>
+
+                            <p><strong>Address:</strong> {order.addressInfo.address}, {order.addressInfo.city}, {order.addressInfo.postalCode}, {order.addressInfo.country}</p>
+
+                            <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
+                            <p><strong>Status:</strong> {order.orderStatus}</p>
+                            <p><strong>Total Price:</strong> ₹{order.totalPrice}</p>
+                            <p><strong>Created At:</strong> {new Date(order.createdAt).toLocaleString()}</p>
+                            <p><strong>Product:</strong> {order.orderItems.name}</p>
+                        </div>
+                    ))
+                )}
+            </div></>
+
+    )
+}
+export default AdminOrders

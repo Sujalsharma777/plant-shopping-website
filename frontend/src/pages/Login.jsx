@@ -40,7 +40,7 @@ const NewUser = () => {
                 headers: { "Content-Type": "application/json" }
             });
 
-            const { success, message, token, user: { name }, } = response.data;
+            const { success, message, error, token, user: { name }, } = response.data;
 
             if (success) {
 
@@ -55,7 +55,7 @@ const NewUser = () => {
                 setIsLoggedIn(true);
 
             } else if (!success) {
-                toast.error(message)
+                toast.error(error)
 
             }
         } catch (error) {
@@ -88,7 +88,7 @@ const NewUser = () => {
             ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-900 space-y-6">
                             Email address
                         </label>
                         <input
