@@ -9,7 +9,10 @@ function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await API.get("admin/Dashboard", { withCredentials: true });
+                const res = await API.get("admin/Dashboard", headers: {
+        Authorization: `Bearer ${token}`,
+            withCredentials: true
+    }   );
                 setStats(res.data);
             } catch (err) {
                 console.error(err);
