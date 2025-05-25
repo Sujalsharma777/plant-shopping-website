@@ -26,7 +26,7 @@ const NewUser = () => {
 
 
         try {
-            const url = "http://localhost:5000/api/auth/register";
+            const url = "https://plant-shopping-website-backend.onrender.com/api/auth/register";
             const response = await axios.post(url, SignupInfo, {
                 headers: { "Content-Type": "application/json" }
             });

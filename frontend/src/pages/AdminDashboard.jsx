@@ -9,7 +9,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/admin/Dashboard", { withCredentials: true });
+                const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/Dashboard", { withCredentials: true });
                 setStats(res.data);
             } catch (err) {
                 console.error(err);

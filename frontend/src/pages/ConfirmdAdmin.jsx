@@ -7,7 +7,7 @@ const ConfirmdAdmin = () => {
     console.log(orders)
     const fetchPendingOrders = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/admin/confirm", {
+            const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/confirm", {
                 withCredentials: true,
             });
             setOrders(res.data);
@@ -19,7 +19,7 @@ const ConfirmdAdmin = () => {
         fetchPendingOrders();
     }, []);
     const updateStatus = async (id, newStatus) => {
-        await axios.put(`http://localhost:5000/admin/${id}/update`, { status: newStatus },
+        await axios.put(`https://plant-shopping-website-backend.onrender.com/admin/${id}/update`, { status: newStatus },
             { withCredentials: true });
 
         fetchPendingOrders();

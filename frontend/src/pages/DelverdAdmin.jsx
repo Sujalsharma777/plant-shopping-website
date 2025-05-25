@@ -7,7 +7,7 @@ const DelverdAdmin = () => {
     console.log(orders)
     const fetchPendingOrders = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/admin/Deliver", {
+            const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/Deliver", {
                 withCredentials: true,
             });
             setOrders(res.data);

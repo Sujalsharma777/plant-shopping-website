@@ -8,7 +8,7 @@ function AdminOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/admin/orders", { withCredentials: true });
+                const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/orders", { withCredentials: true });
                 setOrders(res.data);
             } catch (err) {
                 console.error(err);

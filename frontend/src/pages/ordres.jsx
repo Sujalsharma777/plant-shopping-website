@@ -8,7 +8,7 @@ const OrdersPage = () => {
     const fetchOrders = async () => {
         const token = localStorage.getItem('token');
         try {
-            const res = await axios.get('http://localhost:5000/api/auth/my-orders', {
+            const res = await axios.get('https://plant-shopping-website-backend.onrender.com/api/auth/my-orders', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setOrders(res.data);
@@ -21,7 +21,7 @@ const OrdersPage = () => {
     const handleCancelOrder = async (orderId) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.delete(`http://localhost:5000/api/auth/cancel-order/${orderId}`, {
+            await axios.delete(`https://plant-shopping-website-backend.onrender.com/api/auth/cancel-order/${orderId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.success("Order Cancel Successfully")
@@ -49,7 +49,7 @@ const OrdersPage = () => {
                         <ul className='text-sm'>
                             {order.orderItems.map((item, idx) => (
                                 <li key={idx} className='flex justify-center items-center gap-2'>
-                                    <img src={`http://localhost:5000/uploads/${item.image}`} alt={item.name} width="80" />
+                                    <img src={`https://plant-shopping-website-backend.onrender.com/${item.image}`} alt={item.name} width="80" />
                                     <div className='grid-cols-2'>
                                         <div className='text-md font-medium'>{item.name} x {item.qty}</div>
                                         <p className='text-md '><strong>Order ID:</strong> {order._id}</p>

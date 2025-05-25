@@ -15,7 +15,7 @@ const AdminLogin = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:5000/admin/loginadmin",
+                "https://plant-shopping-website-backend.onrender.com/admin/loginadmin",
                 { email, password },
                 { withCredentials: true }
             );

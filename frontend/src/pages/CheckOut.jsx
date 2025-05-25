@@ -46,7 +46,7 @@ const CheckoutPage = () => {
 
 
         try {
-            await axios.post('http://localhost:5000/api/auth/userorder', newOrderData, {
+            await axios.post('https://plant-shopping-website-backend.onrender.com/api/auth/userorder', newOrderData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

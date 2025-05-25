@@ -7,7 +7,7 @@ function PendingOrders() {
 
     const fetchPendingOrders = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/admin/pending", {
+            const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/pending", {
                 withCredentials: true,
             });
             setOrders(res.data);
@@ -20,7 +20,7 @@ function PendingOrders() {
     }, []);
 
     const updateStatus = async (id, newStatus) => {
-        await axios.put(`http://localhost:5000/admin/${id}/update`, { status: newStatus },
+        await axios.put(`https://plant-shopping-website-backend.onrender.com/admin/${id}/update`, { status: newStatus },
             { withCredentials: true });
 
         fetchPendingOrders();
