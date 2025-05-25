@@ -9,7 +9,7 @@ const path = require("path");
 const adminRoutes = require("./routes/Adminroutes.js");
 dotenv.config();
 connectDB();
-
+const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -26,4 +26,4 @@ app.use("/admin", adminRoutes);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(port, () => console.log("Server running on port 5000"));
