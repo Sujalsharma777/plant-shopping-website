@@ -10,7 +10,9 @@ function Dashboard() {
         const fetchOrders = async () => {
             try {
                 const res = await API.get("admin/Dashboard", {
-     
+       headers: {
+    Authorization: `Bearer ${token}`  // if using JWT in header
+  },
             withCredentials: true
     }   );
                 setStats(res.data);
