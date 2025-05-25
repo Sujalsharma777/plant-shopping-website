@@ -17,13 +17,7 @@ const AdminLogin = () => {
                 const res = await API.post(
                 "admin/loginadmin",
                 { email, password },
-                {
-                    withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${token}`, // optional, axios usually sets this automatically
-                        // Add any other custom headers here
-                    }
-                }
+                { withCredentials: true}
             );
 
             if (res.data.redirect === "/adminpanel") {
