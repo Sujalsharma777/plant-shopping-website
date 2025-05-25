@@ -24,7 +24,7 @@ const loginAdminUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false",
+      secure: false,
       sameSite: "Lax",
     });
 
