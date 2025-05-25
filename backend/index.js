@@ -2,11 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const connectDB = require("./models/db");
-const authRoutes = require("./routes/Authrouter");
-const orderRoutes = require("./routes/orderRoutes");
+const connectDB = require("./models/db.js");
+const authRoutes = require("./routes/Authrouter.js");
+const orderRoutes = require("./routes/orderRoutes.js");
 const path = require("path");
-const adminRoutes = require("./routes/AdminRoutes.js");
+const adminRoutes = require("./routes/AdminRoutes.js.js");
 dotenv.config();
 connectDB();
 

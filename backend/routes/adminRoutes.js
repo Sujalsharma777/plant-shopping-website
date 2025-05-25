@@ -8,8 +8,8 @@ const {
   updateOrderStatus,
   getConfirmedOrders,
   getDeliverOrders,
-} = require("../controllers/Admin");
-const { isAdmin } = require("../middlewares/Verifiytoken");
+} = require("../controllers/Admin.js");
+const { isAdmin } = require("../middlewares/Verifiytoken.js");
 
 router.post("/loginadmin", loginAdminUser);
 router.get("/orders", isAdmin, getAllOrders);
