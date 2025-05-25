@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import FormatePrice from '../Helper/FormatePrice';
 import axios from 'axios';
-
+import API from "../service/api"
 function PendingOrders() {
     const [orders, setOrders] = useState([]);
 
     const fetchPendingOrders = async () => {
         try {
-            const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/pending", {
+            const res = await API.get("admin/pending", {
                 withCredentials: true,
             });
             setOrders(res.data);
@@ -20,7 +20,7 @@ function PendingOrders() {
     }, []);
 
     const updateStatus = async (id, newStatus) => {
-        await axios.put(`https://plant-shopping-website-backend.onrender.com/admin/${id}/update`, { status: newStatus },
+        await API.put(`admin/${id}/update`, { status: newStatus },
             { withCredentials: true });
 
         fetchPendingOrders();

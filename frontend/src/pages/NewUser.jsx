@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import axios from "axios"
 
 import { toast } from "react-toastify"
-
+import API from "../service/api"
 import { useNavigate } from 'react-router-dom'
 const NewUser = () => {
     const navigate = useNavigate();
@@ -26,8 +26,8 @@ const NewUser = () => {
 
 
         try {
-            const url = "https://plant-shopping-website-backend.onrender.com/api/auth/register";
-            const response = await axios.post(url, SignupInfo, {
+            const url = "api/auth/register";
+            const response = await API.post(url, SignupInfo, {
                 headers: { "Content-Type": "application/json" }
             });
 

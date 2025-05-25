@@ -4,6 +4,7 @@ import { UseCartContext } from "../context/CartContext";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify"
 import Formateprice from "../Helper/FormatePrice"
+import API from "../service/api"
 const CheckoutPage = () => {
     const { Cart, total_price, shipping_fee, RemoveCart } = UseCartContext();
     const [orderData, setOrderData] = useState(null);
@@ -46,7 +47,7 @@ const CheckoutPage = () => {
 
 
         try {
-            await axios.post('https://plant-shopping-website-backend.onrender.com/api/auth/userorder', newOrderData, {
+            await API.post('api/auth/userorder', newOrderData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

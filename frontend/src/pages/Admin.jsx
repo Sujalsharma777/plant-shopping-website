@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
-
+import API from "../service/api"
 function AdminOrders() {
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState("");
@@ -8,7 +8,7 @@ function AdminOrders() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/orders", { withCredentials: true });
+                const res = await API.get("admin/orders", { withCredentials: true });
                 setOrders(res.data);
             } catch (err) {
                 console.error(err);

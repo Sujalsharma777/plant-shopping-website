@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import API from "../service/api"
 const AdminLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,8 +14,8 @@ const AdminLogin = () => {
         setError("");
 
         try {
-            const res = await axios.post(
-                "https://plant-shopping-website-backend.onrender.com/admin/loginadmin",
+            const res = await API.post(
+                "admin/loginadmin",
                 { email, password },
                 { withCredentials: true }
             );

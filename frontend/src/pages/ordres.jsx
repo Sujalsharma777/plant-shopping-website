@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import FormatePrice from "../Helper/FormatePrice"
+import API from "../service/api"
 import { toast } from 'react-toastify';
 const OrdersPage = () => {
     const [orders, setOrders] = useState([]);
@@ -21,7 +22,7 @@ const OrdersPage = () => {
     const handleCancelOrder = async (orderId) => {
         const token = localStorage.getItem('token');
         try {
-            await axios.delete(`https://plant-shopping-website-backend.onrender.com/api/auth/cancel-order/${orderId}`, {
+            await API.delete(`api/auth/cancel-order/${orderId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.success("Order Cancel Successfully")

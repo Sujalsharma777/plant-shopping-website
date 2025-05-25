@@ -3,11 +3,14 @@ import axios from "axios"
 import { toast } from "react-toastify"
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext';
+import API from "../service/api"
 const NewUser = () => {
     const navigate = useNavigate();
     const [loginInfo, setlogin] = useState({ email: "", password: "" });
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { user, token, logout } = useAuth();
+    const [namedata, setnamedata] = useState()
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         const copylogininfo = { ...loginInfo }
@@ -16,6 +19,8 @@ const NewUser = () => {
 
 
     };
+
+    console.log()
 
     useEffect(() => {
         // ✅ Check localStorage on page load
@@ -35,12 +40,13 @@ const NewUser = () => {
 
 
         try {
-            const url = "https://plant-shopping-website-backend.onrender.com/api/auth/login";
-            const response = await axios.post(url, loginInfo, {
+            const url = "api/auth/login";
+            const response = await API.post(url, loginInfo, {
                 headers: { "Content-Type": "application/json" }
             });
+            setnamedata(response.data.user.name)
 
-            const { success, message, error, token, user: { name }, } = response.data;
+            const { success, message, error, token, name } = response.data;
 
             if (success) {
 
@@ -82,7 +88,7 @@ const NewUser = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             {isLoggedIn ? (
                 <div className="text-center text-green-600 text-lg font-medium">
-                    <div>Hello "{user}"</div>
+                    <div>Hello "{namedata}"</div>
                     <button onClick={logoutbtn}>Logout</button>
                 </div>
             ) : (

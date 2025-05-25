@@ -2,12 +2,13 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import FormatePrice from "../Helper/FormatePrice";
+import API from "../service/api"
 const DelverdAdmin = () => {
     const [orders, setOrders] = useState([]);
     console.log(orders)
     const fetchPendingOrders = async () => {
         try {
-            const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/Deliver", {
+            const res = await API.get("admin/Deliver", {
                 withCredentials: true,
             });
             setOrders(res.data);

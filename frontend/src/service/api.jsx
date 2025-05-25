@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://plant-shopping-website-backend.onrender.com',
+    baseURL: 'http://localhost:5000/',
     withCredentials: true,
 });
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import FormatePrice from '../Helper/FormatePrice'
 import axios from 'axios';
 import { NavLink } from "react-router";
+import API from "../service/api"
 function Dashboard() {
     const [stats, setStats] = useState({ totalSales: 0, pendingOrders: 0, deliveredOrders: 0 });
     console.log(stats)
@@ -9,7 +10,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await axios.get("https://plant-shopping-website-backend.onrender.com/admin/Dashboard", { withCredentials: true });
+                const res = await API.get("admin/Dashboard", { withCredentials: true });
                 setStats(res.data);
             } catch (err) {
                 console.error(err);
