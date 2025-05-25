@@ -5,8 +5,7 @@ import { NavLink } from "react-router";
 import API from "../service/api"
 function Dashboard() {
     const [stats, setStats] = useState({ totalSales: 0, pendingOrders: 0, deliveredOrders: 0 });
-    console.log(stats)
-
+   
     useEffect(() => {
         const fetchOrders = async () => {
             try {
@@ -14,7 +13,7 @@ function Dashboard() {
                 setStats(res.data);
             } catch (err) {
                 console.error(err);
-                setError("Failed to load orders");
+               
             }
         };
 
