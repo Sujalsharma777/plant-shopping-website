@@ -121,10 +121,12 @@ const NewUser = () => {
                             onChange={handleChange}
                             value={loginInfo.password}
                         />
+                        
                         <div className='flex justify-end text-sm font-medium text-gray-600 underline'>
                             <NavLink to="/NewUser">If you are a new user</NavLink>
                         </div>
                     </div>
+                    <NavLink className='flex justify-end text-sm font-medium text-gray-600 underline' to="/admin-Login">Login As a Admin</NavLink>
 
                     <div>
                         <button
