@@ -6,7 +6,7 @@ const connectDB = require("./models/db.js");
 const authRoutes = require("./routes/Authrouter.js");
 const orderRoutes = require("./routes/orderRoutes.js");
 const path = require("path");
-const adminRoutes = require("./routes/Adminroutes");
+const adminRoutes = require("./routes/Adminroutes.js");
 dotenv.config();
 connectDB();
 
