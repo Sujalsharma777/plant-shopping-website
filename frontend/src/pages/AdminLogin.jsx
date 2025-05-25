@@ -14,10 +14,16 @@ const AdminLogin = () => {
         setError("");
 
         try {
-            const res = await API.post(
+                const res = await API.post(
                 "admin/loginadmin",
                 { email, password },
-                { withCredentials: true }
+                {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${token}`, // optional, axios usually sets this automatically
+                        // Add any other custom headers here
+                    }
+                }
             );
 
             if (res.data.redirect === "/adminpanel") {
