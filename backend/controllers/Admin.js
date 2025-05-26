@@ -24,8 +24,7 @@ const loginAdminUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true, // required for HTTPS on production
-  sameSite: "None"
+      expiresIn:20000000,
     });
 
     res
