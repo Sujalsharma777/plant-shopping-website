@@ -50,7 +50,7 @@ const OrdersPage = () => {
                         <ul className='text-sm'>
                             {order.orderItems.map((item, idx) => (
                                 <li key={idx} className='flex justify-center items-center gap-2'>
-                                    <img src={`https://plant-shopping-website-backend.onrender.com/${item.image}`} alt={item.name} width="80" />
+                                    <img src={item.image} alt={item.name} width="80" />
                                     <div className='grid-cols-2'>
                                         <div className='text-md font-medium'>{item.name} x {item.qty}</div>
                                         <p className='text-md '><strong>Order ID:</strong> {order._id}</p>
