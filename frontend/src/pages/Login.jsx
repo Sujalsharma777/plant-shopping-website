@@ -88,8 +88,8 @@ const NewUser = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             {isLoggedIn ? (
                 <div className="text-center text-green-600 text-lg font-medium">
-                    <div>Hello "{namedata}"</div>
-                    <button onClick={logoutbtn}>Logout</button>
+                    <div>{`Namaste ${namedata}`}</div>
+                    <button className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" onClick={logoutbtn}>Logout</button>
                 </div>
             ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
