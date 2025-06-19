@@ -19,7 +19,7 @@ const isAdmin = async (req, res, next) => {
         .json({ message: "Unauthorized : user is not an admin " });
     }
 
-    req.users = user;
+    req.user = user;
     next();
   } catch (error) {
     console.log(error);
